@@ -9,22 +9,33 @@ This is a loss function based on Kappa index.
 
 ```python
 import keras
-import numpy as np
 from keras import backend as K
 
 def Kappa_loss(y_true, y_pred, N=224*224):
     Gi = K.flatten(y_true)
     Pi = K.flatten(y_pred)
-    numerator = 2*K.sum(Pi * Gi)-K.sum(Pi)*K.sum(Gi)/N
-    denominator = K.sum(Pi*Pi)+K.sum(Gi*Gi)-2*K.sum(Pi*Gi)/N
-    Kappa_loss = 1 - numerator/denominator
-    return Kappa_loss
+    numerator = 2 * K.sum(Pi * Gi) - K.sum(Pi) * K.sum(Gi) / N
+    denominator = K.sum(Pi * Pi) + K.sum(Gi * Gi) - 2 * K.sum(Pi * Gi) / N
+    loss = 1 - numerator / denominator
+    return loss
+ ```
+ 
+ ```python
+ import torch
+
+ def Kappa_loss(outputs, targets,  N=224*224):
+     outputs = outputs.view(-1)
+     targets = targets.view(-1)
+     numerator = 2 * (outputs * targets).sum() - outputs.sum() * targets.sum / N
+     denominator = (outputs * outputs).sum() + (targets * targets).sum() - 2 * (outputs * targets).sum() / N
+     loss = 1 - numerator / denominator
+     return loss
  ```
  
 ### Requirements
 * Python 3.*  
-* Keras or Tensorflow
-* Numpy
+* Keras or Tensorflow or Pytorch
+
 ### Citation
 
 ```
