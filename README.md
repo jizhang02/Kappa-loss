@@ -5,8 +5,22 @@ This is a loss function based on Kappa index.
 👉 Formula:   
 ![](https://latex.codecogs.com/svg.image?\text{Kappa&space;loss}&space;=&space;1-\frac{2\sum_{i=1}^N{p_ig_i}-\sum_{i=1}^N{p_i}\cdot\sum_{i=1}^N{g_i}/N}{\sum_{i=1}^N&space;{p_i}&plus;\sum_{i=1}^N&space;{g_i}-2\sum_{i=1}^N{p_ig_i}/N})
 
-👉 Code:
+👉 Code:    
 
+![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
+```python
+import tensorflow as tf
+
+def Kappa_loss(y_true, y_pred, N=224*224):
+    Gi = tf.reshape(y_true, shape=(-1,))
+    Pi = tf.reshape(y_pred, shape=(-1,))
+    numerator = 2 * tf.reduce_sum(Pi * Gi) - tf.reduce_sum(Pi) * tf.reduce_sum(Gi) / N
+    denominator = tf.reduce_sum(Pi * Pi) + tf.reduce_sum(Gi * Gi) - 2 * tf.reduce_sum(Pi * Gi) / N
+    loss = 1 - numerator / denominator
+    return loss
+```
+
+![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white)
 ```python
 import keras
 from keras import backend as K
@@ -20,6 +34,8 @@ def Kappa_loss(y_true, y_pred, N=224*224):
     return loss
  ```
  
+ 
+ ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
  ```python
  import torch
 
@@ -34,7 +50,7 @@ def Kappa_loss(y_true, y_pred, N=224*224):
  
 ### Requirements
 * Python 3.*  
-* Keras or Tensorflow or Pytorch
+* Tensorflow or Keras or Pytorch
 
 ### Citation
 
