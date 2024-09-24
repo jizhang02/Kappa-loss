@@ -3,7 +3,7 @@
 **In this work, we propose a metric-inspired loss function, based on the Kappa index. Unlike the Dice loss, a standard loss used in image segmentation CNN, the Kappa loss takes into account all the pixels in the image, including the true negative.**
 
 
-👉 The method has been accepted in [ISBI2020](http://2020.biomedicalimaging.org/).  
+👉 The method has been accepted in [ISBI2020](http://2020.biomedicalimaging.org/), [Slides](https://1drv.ms/b/c/ed2e624ab88ab8b4/EbS4irhKYi4ggO3ZDAAAAAABtxkIGgMoOwmQsALsy9P3iw?e=BdIgQH).    
 👉 The paper can be viewed on [ResearchGate](https://www.researchgate.net/publication/341585606_Kappa_Loss_for_Skin_Lesion_Segmentation_in_Fully_Convolutional_Network).  
 👉 Formula:   
 ![](https://latex.codecogs.com/svg.image?\text{Kappa&space;loss}&space;=&space;1-\frac{2\sum_{i=1}^N{p_ig_i}-\sum_{i=1}^N{p_i}\cdot\sum_{i=1}^N{g_i}/N}{\sum_{i=1}^N&space;{p_i}&plus;\sum_{i=1}^N&space;{g_i}-2\sum_{i=1}^N{p_ig_i}/N})
